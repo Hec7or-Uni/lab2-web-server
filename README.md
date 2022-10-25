@@ -25,15 +25,23 @@ Repository | NIA    | GitHub Action | Has gift
 
 CORS is a mechanism that uses additional HTTP headers to tell browsers to give a web application running at one origin, access to selected resources from a different origin. A web application executes a cross-origin HTTP request when it requests a resource that has a different origin (domain, protocol, or port) from its own.
 
+For security reasons, browsers restrict cross-origin HTTP requests initiated within a script. For example, XMLHttpRequest and the Fetch API follow the same-origin policy. This means that an application using these XMLHttpRequest APIs can only make HTTP requests to its own domain, unless CORS headers are used.
+
 ### How to enable CORS?
 
 To enable CORS, we need to add the following annotation to the class that contains the controller methods:
 
 ```java
-@CrossOrigin(origins = "*")
-```   
+@CrossOrigin
+```
 
 you can find more options in this article: [Spring Boot CORS Configuration](https://reflectoring.io/spring-cors/)
+
+For example, the implemented handler has allowed access to the `localhost:3000` origin, which means that we will be able to query `localhost:3000` from our host.
+
+```java
+@CrossOrigin(origins = ["http://localhost:3000"])
+```
 
 ### How to test it?
 
